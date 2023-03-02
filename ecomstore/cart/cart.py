@@ -1,9 +1,10 @@
-from cart.models import CartItem
-from catalog.models import Product
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 import decimal  # not needed yet but we will later
 import random
+
+from cart.models import CartItem
+from catalog.models import Product
 
 CART_ID_SESSION_KEY = 'cart_id'
 
@@ -17,7 +18,8 @@ def _cart_id(request):
 
 def _generate_cart_id():
     cart_id = ''
-    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@ # $%^&*()'
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()'
+
     cart_id_length = 50
     for y in range(cart_id_length):
         cart_id += characters[random.randint(0, len(characters) - 1)]
@@ -30,7 +32,7 @@ def get_cart_items(request):
 
 
 # add an item to the cart
-def add_to_cart(request):
+def add_to_cart(request, p):
     postdata = request.POST.copy()
     # get product slug from post data, return blank if empty
     product_slug = postdata.get('product_slug', '')
@@ -55,9 +57,8 @@ def add_to_cart(request):
         ci.cart_id = _cart_id(request)
         ci.save()
 
-    # returns the total number of items in the user's cart
 
-
+# returns the total number of items in the user's cart
 def cart_distinct_item_count(request):
     return get_cart_items(request).count()
 
@@ -66,7 +67,6 @@ def get_single_item(request, item_id):
     return get_object_or_404(CartItem, id=item_id, cart_id=_cart_id(request))
 
 
-# update quantity for single item
 def update_cart(request):
     postdata = request.POST.copy()
     item_id = postdata['item_id']
@@ -79,9 +79,8 @@ def update_cart(request):
         else:
             remove_from_cart(request)
 
-            # remove a single item from cart
 
-
+# remove a single item from cart
 def remove_from_cart(request):
     postdata = request.POST.copy()
     item_id = postdata['item_id']
@@ -89,9 +88,8 @@ def remove_from_cart(request):
     if cart_item:
         cart_item.delete()
 
-        # gets the total cost for the current cart
 
-
+# gets the total cost for the current cart
 def cart_subtotal(request):
     cart_total = decimal.Decimal('0.00')
     cart_products = get_cart_items(request)

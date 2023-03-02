@@ -21,8 +21,9 @@ from ecomstore import settings, views
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('catalog/', views.home),
-    path('', include('catalog.urls')),
-    path('', show_cart, name='show_cart')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('catalog/', views.home),
+                  path('', include('catalog.urls')),
+                  path('cart/', include('cart.urls'))
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
+              + static(settings.STATIC_URL, document_root=settings.STATIC_URL)

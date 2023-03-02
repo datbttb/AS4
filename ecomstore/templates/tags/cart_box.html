@@ -1,12 +1,7 @@
 {% with cart_item_count as cart_count %}
-      <a href="{% url show_cart %}">
-            Shopping Cart
-            <br />
-            {{ cart_count }} Item{{ cart_count|pluralize }}
-      </a>
+    <a href="{% url show_cart %}">
+        Shopping Cart
+        <br/>
+        {{ cart_count }} Item{{ cart_count|pluralize }}
+    </a>
 {% endwith %}
-{% load catalog_tags %}
-And then add this to your catalog.html, inside the cart_box div:
-<div class="cart_box">
-     {% cart_box request %}
-</div>

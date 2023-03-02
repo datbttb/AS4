@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from django.template import RequestContext
-import cart
-import random
+
+from cart import cart
 
 
 def show_cart(request, template_name="cart/cart.html"):
@@ -9,9 +8,15 @@ def show_cart(request, template_name="cart/cart.html"):
         postdata = request.POST.copy()
         if postdata['submit'] == 'Remove':
             cart.remove_from_cart(request)
-        if postdata['submit'] == 'Update':
+        elif postdata['submit'] == 'Update':
             cart.update_cart(request)
+
     cart_items = cart.get_cart_items(request)
     page_title = 'Shopping Cart'
     cart_subtotal = cart.cart_subtotal(request)
-    return render(request, template_name, context_instance=RequestContext(request))
+
+    return render(request, template_name, {
+        'cart_items': cart_items,
+        'page_title': page_title,
+        'cart_subtotal': cart_subtotal,
+    })

@@ -1,40 +1,213 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" href="ecomstore/templates/static/style.css" >
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+}
 
-{% block site_wrapper %}
-    <div class="main">
-        <a href="#content" class="skip_link">Skip to main content</a>
-        <div id="banner">
-            <div class="bannerIEPadder">
-                <div class="cart_box">
-                    [link to cart here]
+html {
+    font-size: medium;
+}
+
+html, body {
+    background-color: Silver;
+}
+
+.cb {
+    clear: both;
+}
+
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}
+
+.bn {
+    border: none;
+}
+
+#main {
+    margin: 0 auto;
+    width: 100%;
+    background-color: White;
+}
+
+.bannerIEPadder, .sidebarIEPadder, .contentIEPadder {
+    padding: 10px;
+}
+
+.navIEPadder, .footerIEPadder {
+    padding: 5px;
+}
+
+#banner {
+    width: 100%;
+    height: 75px;
+    background-color: DarkOrange;
+    color: White;
+    font-size: 36px;
+    font-weight: bold;
+    position: relative;
+}
+
+div.cart_box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: medium;
+}
+
+div.cart_box a {
+    color: white;
+}
+
+#sidebar {
+    width: 100%;
+    float: left;;
+}
+
+#content {
+    width: 100%;
+    float: left;
+}
+
+#footer {
+    clear: both;
+    background-color: #98AC5E;
+    color: White;
+    text-align: center;
+}
+
+a.skip_link {
+    position: absolute;
+    left: -1000px;
+    top: -1000px;
+}
+
+#navigation {
+    width: 100%;
+    height: auto;
+    background-color: #98AC5E;
+    text-align: center;
+}
+
+#navigation ul {
+    list-style: none;
+}
+
+#navigation ul li {
+    float: left;
+    margin-right: 15px;
+}
+
+#navigation ul li a {
+    color: White;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#navigation ul li a:hover {
+    color: #616161;
+    background-color: White;
+    text-decoration: none;
+}
+
+a {
+    color: #98AC5E;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* category page styles */
+div.product_thumbnail {
+    text-align: center;
+    float: left;
+    width: 150px;
+    height: 200px;
+}
+
+/* product page styles */
+div.product_image {
+    float: left;
+    padding: 0 10px 10px 0;
+}
+
+h3 {
+    background-color: #98AC5E;
+    color: White;
+    padding: 3px;
+    margin-bottom: 6px;
+}
+
+ul#categories {
+    list-style: none;
+}
+
+ul#categories li {
+    font-weight: bold;
+    color: #616161;
+}
+
+ul#categories li a {
+    text-decoration: underline;
+}
+
+div#footer a {
+    color: White;
+    font-size: small;
+    text-decoration: underline;
+    font-weight: normal;
+    margin-right: 10px;
+}
+    </style>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block site_wrapper %}
+        <div class="main">
+            <a href="#content" class="skip_link">Skip to main content</a>
+            <div id="banner">
+                <div class="bannerIEPadder">
+                    <div class="cart_box">
+                        <a href="http://127.0.0.1:8000/cart">Skip to main content</a>
+                    </div>
+                    Modern Musician
                 </div>
-                Modern Musician
             </div>
-        </div>
-        <div id="navigation">
-            <div class="navIEPadder">
-                {% include "tags/navigation.html" %}
-            </div>
-        </div>
-        <div id="middle">
-            <div id="sidebar">
-                <div class="sidebarIEPadder">
-                    [search box here]
-                    <br/>
-                    [category listing here]
+            <div id="navigation">
+                <div class="navIEPadder">
+                    {% include "tags/navigation.html" %}
                 </div>
             </div>
-            <div id="content">
-                <a name=”content”></a>
-                <div class="contentIEPadder">
-                    {% block content %}{% endblock %}
+            <div id="middle">
+                <div id="sidebar">
+                </div>
+                <div id="content">
+                    <a name=”content”></a>
+                    <div class="contentIEPadder">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                <div class="footerIEPadder">
+    {#                {% footer_links %}#}
+                    Footer
                 </div>
             </div>
         </div>
-        <div id="footer">
-            <div class="footerIEPadder">
-                [footer here]
-            </div>
-        </div>
-    </div>
-{% endblock %}
+    {% endblock %}
+</body>
+</html>
