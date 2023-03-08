@@ -28,6 +28,8 @@ ALLOWED_HOSTS = []
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 90
 
+LOGIN_REDIRECT_URL = '/accounts/my_account/'
+
 # Application definition
 SITE_ID = 1
 INSTALLED_APPS = [
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
     'catalog',
     'catalog.catalog_filters',
     'cart',
+    'checkout',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +145,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# ENABLE_SSL = True

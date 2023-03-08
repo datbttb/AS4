@@ -24,6 +24,8 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('catalog/', views.home),
                   path('', include('catalog.urls')),
-                  path('cart/', include('cart.urls'))
+                  path('cart/', include('cart.urls')),
+                  path('accounts/', include('django.contrib.auth.urls')),
+                  path('accounts/', include('accounts.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
               + static(settings.STATIC_URL, document_root=settings.STATIC_URL)

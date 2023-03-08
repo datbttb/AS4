@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>My Website</title>
-    <link rel="stylesheet" href="ecomstore/templates/static/style.css" >
+    <link rel="stylesheet" href="ecomstore/templates/static/style.css">
     <style>
         * {
     margin: 0;
@@ -170,44 +170,64 @@ div#footer a {
     font-weight: normal;
     margin-right: 10px;
 }
+table#register{
+    width:100%;
+}
+table#register th, td{
+    vertical-align:top;
+}
+fieldset.my_account{
+    padding:10px;
+}
+fieldset.my_account legend{
+    font-weight:bold;
+}
+fieldset.my_account ul{
+    list-style:none;
+}
+fieldset.my_account ul li{
+    margin-bottom:5px;
+}
+
+
     </style>
 </head>
 <body>
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-    {% block site_wrapper %}
-        <div class="main">
-            <a href="#content" class="skip_link">Skip to main content</a>
-            <div id="banner">
-                <div class="bannerIEPadder">
-                    <div class="cart_box">
-                        <a href="http://127.0.0.1:8000/cart">Skip to main content</a>
-                    </div>
-                    Modern Musician
-                </div>
+{% block site_wrapper %}
+<div class="main">
+    <a href="#content" class="skip_link">Skip to main content</a>
+    <div id="banner">
+        <div class="bannerIEPadder">
+            <div class="cart_box">
+                <a href="http://127.0.0.1:8000/cart">Skip to main content</a>
             </div>
-            <div id="navigation">
-                <div class="navIEPadder">
-                    {% include "tags/navigation.html" %}
-                </div>
-            </div>
-            <div id="middle">
-                <div id="sidebar">
-                </div>
-                <div id="content">
-                    <a name=”content”></a>
-                    <div class="contentIEPadder">
-                        {% block content %}{% endblock %}
-                    </div>
-                </div>
-            </div>
-            <div id="footer">
-                <div class="footerIEPadder">
-    {#                {% footer_links %}#}
-                    Footer
-                </div>
+            Modern Musician
+        </div>
+    </div>
+    <div id="navigation">
+        <div class="navIEPadder">
+            {% include "tags/navigation.html" %}
+        </div>
+    </div>
+    <div id="middle">
+        <div id="sidebar">
+        </div>
+        <div id="content">
+            <a name=”content”></a>
+            <div class="contentIEPadder">
+                {% block content %}{% endblock %}
             </div>
         </div>
-    {% endblock %}
+    </div>
+    <div id="footer">
+        <div class="footerIEPadder">
+            {# {% footer_links %}#}
+            Footer
+        </div>
+    </div>
+</div>
+{% endblock %}
 </body>
 </html>
