@@ -6,9 +6,9 @@ from checkout.models import Order, OrderItem
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.models import User
 
-
-from accounts.forms import UserProfileForm, RegistrationForm
+from accounts.forms import UserProfileForm, RegistrationForm, RegistrationForm1
 
 
 def register(request, template_name="registration/register.html"):
@@ -18,7 +18,7 @@ def register(request, template_name="registration/register.html"):
             user = form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
+            user =User.objects.create_user(username=username, password=password)
             if user is not None:
                 login(request, user)
                 return redirect('my_account')
@@ -61,3 +61,13 @@ def order_info(request, template_name="registration/order_info.html"):
         form = UserProfileForm(instance=user_profile)
     page_title = 'Edit Order Information'
     return render(request, template_name, {'form': form, 'page_title': page_title})
+
+
+def register1(request):
+    form = RegistrationForm1()
+    if request.method == 'POST':
+        form = RegistrationForm1(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+    return render(request, 'register.html', {'form': form})

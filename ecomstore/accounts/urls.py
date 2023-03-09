@@ -2,7 +2,7 @@ from os import name
 
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from accounts.views import register, my_account, order_details, order_info
+from accounts.views import register, my_account, order_details, order_info, register1
 from ecomstore import settings
 
 
@@ -13,4 +13,5 @@ urlpatterns = [
          name='order_details'),
     path('order_info/', order_info, {'template_name': 'registration/order_info.html'}, name='order_info'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('register1/', register1, name="register1"),
 ]
